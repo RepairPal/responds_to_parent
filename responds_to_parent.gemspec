@@ -6,7 +6,7 @@ spec = Gem::Specification.new do |s|
                   'respond to the parent document of your page.'            +
                   'Make Ajaxy file uploads by posting the form to a hidden' +
                   'iframe, and respond with RJS to the parent window.'
-  
+  s.authors     = "Sean Treadway, with big modifications from Mark Catley"
   s.files = %w( README Rakefile MIT-LICENSE
                 lib/responds_to_parent.rb
                 lib/responds_to_parent/action_controller.rb
