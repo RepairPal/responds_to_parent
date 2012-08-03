@@ -1,7 +1,4 @@
-ENV["RAILS_ENV"] = "test"
-require File.dirname(__FILE__) + '/../../../../config/environment'
-require 'test/unit'
-require 'test_help'
+require File.dirname(__FILE__) + '/test_helper'
 
 class AssertSelectParentTest < ActionController::TestCase
   class AssertSelectParentController < ActionController::Base
@@ -105,9 +102,6 @@ class AssertSelectParentTest < ActionController::TestCase
       end
     end
 end
-require File.dirname(__FILE__) + '/../../../../config/environment'
-require 'test/unit'
-require 'test_help'
 
 class AssertSelectParentTest <  ActionController::TestCase
   class AssertSelectParentController < ActionController::Base
@@ -211,9 +205,6 @@ class AssertSelectParentTest <  ActionController::TestCase
       end
     end
 end
-require File.dirname(__FILE__) + '/../../../../config/environment'
-require 'test/unit'
-require 'test_help'
 
 class AssertSelectParentTest <  ActionController::TestCase
   class AssertSelectParentController < ActionController::Base
