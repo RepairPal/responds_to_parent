@@ -6,17 +6,17 @@ module RespondsToParent
     # to use IFRAME base RPC.
     def responds_to_parent(&block)
       yield
-    
+
       if performed?
         # Either pull out a redirect or the request body
-        script =  if location = erase_redirect_results
+        script =  if location = response.headers['Location']
                     "document.location.href = '#{self.class.helpers.escape_javascript location.to_s}'"
                   else
                     response.body || ''
                   end
 
         # Clear out the previous render to prevent double render
-        erase_results
+        response.request.env['action_controller.instance'].instance_variable_set(:@_response_body, nil)
 
         # We're returning HTML instead of JS or XML now
         response.headers['Content-Type'] = 'text/html; charset=UTF-8'
@@ -30,9 +30,10 @@ module RespondsToParent
         render :text => "<html><body><script type='text/javascript' charset='utf-8'>
           var loc = document.location;
           with(window.parent) { setTimeout(function() { window.eval('#{self.class.helpers.escape_javascript script}'); window.loc && loc.replace('about:blank'); }, 1) }
-        </script></body></html>"
+        </script></body></html>".html_safe
       end
     end
+
     alias respond_to_parent responds_to_parent
   end
 end
